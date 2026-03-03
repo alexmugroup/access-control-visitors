@@ -20,8 +20,10 @@ define('ACV_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 require_once ACV_PLUGIN_DIR . 'includes/class-acv-frontend.php';
 require_once ACV_PLUGIN_DIR . 'includes/class-acv-admin.php';
+require_once ACV_PLUGIN_DIR . 'includes/class-acv-css-hide.php';
 
 add_action('plugins_loaded', function() {
     new ACV_Frontend();
     new ACV_Admin();
+    new ACV_CSS_Hide();
 });

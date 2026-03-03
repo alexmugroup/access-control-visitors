@@ -28,7 +28,7 @@ class ACV_Admin {
             'acv-access-control',
             array($this, 'render_settings_page'),
             'dashicons-lock',
-            8,
+            8
         );
     }
     
@@ -39,6 +39,7 @@ class ACV_Admin {
         register_setting('acv_settings_group', 'acv_login_url');
         register_setting('acv_settings_group', 'acv_register_url');
         register_setting('acv_settings_group', 'acv_char_limit');
+        register_setting('acv_settings_group', 'acv_exclude_classes'); // новая опция
         
         add_settings_section(
             'acv_settings_section',
@@ -67,6 +68,15 @@ class ACV_Admin {
             'acv_char_limit',
             'Лимит символов',
             array($this, 'render_char_limit_field'),
+            'acv-access-control',
+            'acv_settings_section'
+        );
+
+        // Новое поле для CSS-классов
+        add_settings_field(
+            'acv_exclude_classes',
+            'Исключаемые CSS-классы',
+            array($this, 'render_exclude_classes_field'),
             'acv-access-control',
             'acv_settings_section'
         );
@@ -104,6 +114,15 @@ class ACV_Admin {
         $value = get_option('acv_char_limit', 500);
         echo '<input type="number" name="acv_char_limit" value="' . esc_attr($value) . '" class="small-text" min="100" max="5000">';
         echo '<p class="description">Количество символов для отображения, если на странице нет тега H2.</p>';
+    }
+
+    /**
+     * Поле ввода CSS-классов для исключения
+     */
+    public function render_exclude_classes_field() {
+        $value = get_option('acv_exclude_classes', '');
+        echo '<input type="text" name="acv_exclude_classes" value="' . esc_attr($value) . '" class="regular-text" placeholder="например: no-guest, private, vip">';
+        echo '<p class="description">Укажите CSS-классы через запятую. Элементы с этими классами будут полностью удалены из контента для неавторизованных посетителей.</p>';
     }
     
     /**
