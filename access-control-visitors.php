@@ -3,7 +3,7 @@
  * Plugin Name: AA Access Control for Visitors
  * Plugin URI: https://efeto.ru
  * Description: Плагин для управления доступом к материалам для неавторизованных посетителей сайта на ВордПресс
- * Version: 0.3
+ * Version: 0.4
  * Author: efeto.ru
  * Author URI: https://efeto.ru
  * License: GPL v2 or later
